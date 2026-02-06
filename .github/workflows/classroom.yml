@@ -30,7 +30,7 @@ jobs:
       - name: Count @Test annotations in StudentGradeTest.java
         id: count-tests
         run: |
-          TEST_COUNT=$(grep -c "@Test" src/test/java/com/setu/dsa/StudentGradeTest.java || echo "0")
+          TEST_COUNT=$(grep -E "^\s*@Test" src/test/java/com/setu/dsa/StudentGradeTest.java | wc -l)
           echo "Test count: $TEST_COUNT"
           echo "test_count=$TEST_COUNT" >> $GITHUB_OUTPUT
           if [ $TEST_COUNT -lt 8 ]; then
