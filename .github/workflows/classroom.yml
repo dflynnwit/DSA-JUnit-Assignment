@@ -18,14 +18,14 @@ jobs:
         with:
           java-version: '17'
           distribution: 'temurin'
-          cache: maven
+          cache: maven      
       
       - name: Compile project
-        run: mvn clean compile
+        run: mvn clean compile      
       
       - name: Run tests
         run: mvn test
-        continue-on-error: true
+        continue-on-error: true      
       
       - name: Count @Test annotations in StudentGradeTest.java
         id: count-tests
@@ -38,7 +38,7 @@ jobs:
             exit 1
           else
             echo "✅ PASSED: Found $TEST_COUNT @Test methods (minimum 8 required)"
-          fi
+          fi      
       
       - name: Check for @BeforeEach or @Before annotation
         id: check-setup
@@ -48,7 +48,7 @@ jobs:
           else
             echo "❌ FAILED: No @BeforeEach or @Before annotation found in StudentGradeTest.java"
             exit 1
-          fi
+          fi      
       
       - name: Display test results summary
         if: always()
@@ -70,7 +70,7 @@ jobs:
       
       - name: Upload test results
         if: always()
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: test-results
           path: target/surefire-reports/
