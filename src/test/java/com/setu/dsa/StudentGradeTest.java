@@ -26,10 +26,8 @@ public class StudentGradeTest {
      */
     @BeforeEach
     public void setUp() {
-        // TODO: Initialize test objects here
-        // Example:
-        // percentageGrade = new PercentageGrade("John Doe", "Data Structures");
-        // letterGrade = new LetterGrade("Jane Smith", "Algorithms");
+        percentageGrade = new PercentageGrade("John Doe", "Data Structures");
+        letterGrade = new LetterGrade("Jane Smith", "Algorithms");
     }
     
     /**
@@ -95,4 +93,70 @@ public class StudentGradeTest {
     //     });
     // }
     // ========================================================================
+    
+    @Test
+    public void testPercentageDistinction() {
+        percentageGrade.setGrade(85);
+        assertEquals("Distinction", percentageGrade.classifyGrade());
+    }
+
+    @Test
+    public void testPercentageMerit() {
+        percentageGrade.setGrade(60);
+        assertEquals("Merit", percentageGrade.classifyGrade());
+    }
+
+    @Test
+    public void testPercentagePass() {
+        percentageGrade.setGrade(45);
+        assertEquals("Pass", percentageGrade.classifyGrade());
+    }
+
+    @Test
+    public void testPercentageFail() {
+        percentageGrade.setGrade(30);
+        assertEquals("Fail", percentageGrade.classifyGrade());
+    }
+
+    @Test
+    public void testInvalidPercentageThrowsException() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            percentageGrade.setGrade(-1);
+        });
+    }
+
+    @Test
+    public void testPercentageAbove100ThrowsException() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            percentageGrade.setGrade(101);
+        });
+    }
+
+    @Test
+    public void testLetterGradeA() {
+        letterGrade.setGrade('A');
+        assertEquals(1, letterGrade.getGrade());
+        assertEquals("Distinction", letterGrade.classifyGrade());
+    }
+
+    @Test
+    public void testLetterGradeD() {
+        letterGrade.setGrade('D');
+        assertEquals(4, letterGrade.getGrade());
+        assertEquals("Pass", letterGrade.classifyGrade());
+    }
+
+    @Test
+    public void testInvalidLetterThrowsException() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            letterGrade.setGrade('F');
+        });
+    }
+
+    @Test
+    public void testInvalidStringGradeThrowsException() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            letterGrade.setGrade("");
+        });
+    }
 }

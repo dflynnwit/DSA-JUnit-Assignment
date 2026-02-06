@@ -30,7 +30,11 @@ public class LetterGrade extends StudentGrade {
      * @throws IllegalArgumentException if grade is not between A and E
      */
     public void setGrade(char grade) {
-        // TODO: Accept A-E (case insensitive), throw IllegalArgumentException otherwise
+        char upperGrade = Character.toUpperCase(grade);
+        if (upperGrade < 'A' || upperGrade > 'E') {
+            throw new IllegalArgumentException("Grade must be between A and E");
+        }
+        this.grade = upperGrade;
     }
     
     /**
@@ -41,7 +45,10 @@ public class LetterGrade extends StudentGrade {
      * @throws IllegalArgumentException if grade is not between A and E or String is invalid
      */
     public void setGrade(String grade) {
-        // TODO: Accept A-E (case insensitive), throw IllegalArgumentException otherwise
+        if (grade == null || grade.length() != 1) {
+            throw new IllegalArgumentException("Grade must be a single character");
+        }
+        setGrade(grade.charAt(0));
     }
     
     /**
@@ -51,8 +58,7 @@ public class LetterGrade extends StudentGrade {
      */
     @Override
     public int getGrade() {
-        // TODO: Return 1 for A, 2 for B, 3 for C, 4 for D, 5 for E
-        return 0;
+        return grade - 'A' + 1;
     }
     
     /**
@@ -62,7 +68,14 @@ public class LetterGrade extends StudentGrade {
      */
     @Override
     public String classifyGrade() {
-        // TODO: Return 'Distinction' for A or B, 'Merit' for C, 'Pass' for D, 'Fail' for E
-        return null;
+        if (grade == 'A' || grade == 'B') {
+            return "Distinction";
+        } else if (grade == 'C') {
+            return "Merit";
+        } else if (grade == 'D') {
+            return "Pass";
+        } else {
+            return "Fail";
+        }
     }
 }

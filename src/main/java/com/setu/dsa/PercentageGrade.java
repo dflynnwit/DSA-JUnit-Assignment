@@ -30,7 +30,10 @@ public class PercentageGrade extends StudentGrade {
      * @throws IllegalArgumentException if grade is less than 0 or greater than 100
      */
     public void setGrade(int grade) {
-        // TODO: Throw IllegalArgumentException if grade < 0 or grade > 100
+        if (grade < 0 || grade > 100) {
+            throw new IllegalArgumentException("Grade must be between 0 and 100");
+        }
+        this.grade = grade;
     }
     
     /**
@@ -40,8 +43,7 @@ public class PercentageGrade extends StudentGrade {
      */
     @Override
     public int getGrade() {
-        // TODO: Return the grade
-        return 0;
+        return grade;
     }
     
     /**
@@ -51,7 +53,14 @@ public class PercentageGrade extends StudentGrade {
      */
     @Override
     public String classifyGrade() {
-        // TODO: Return 'Distinction' for 70-100, 'Merit' for 50-69, 'Pass' for 40-49, 'Fail' for 0-39
-        return null;
+        if (grade >= 70) {
+            return "Distinction";
+        } else if (grade >= 50) {
+            return "Merit";
+        } else if (grade >= 40) {
+            return "Pass";
+        } else {
+            return "Fail";
+        }
     }
 }
