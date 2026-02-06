@@ -41,3 +41,9 @@ buildNumber.properties
 *.iml
 *.ipr
 out/
+
+# Eclipse
+.classpath
+.project
+.settings/
+bin/
