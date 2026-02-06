@@ -126,6 +126,13 @@ public class StudentGradeTest {
     }
 
     @Test
+    public void testPercentageAbove100ThrowsException() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            percentageGrade.setGrade(101);
+        });
+    }
+
+    @Test
     public void testLetterGradeA() {
         letterGrade.setGrade('A');
         assertEquals(1, letterGrade.getGrade());
@@ -143,6 +150,13 @@ public class StudentGradeTest {
     public void testInvalidLetterThrowsException() {
         assertThrows(IllegalArgumentException.class, () -> {
             letterGrade.setGrade('F');
+        });
+    }
+
+    @Test
+    public void testInvalidStringGradeThrowsException() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            letterGrade.setGrade("");
         });
     }
 }
